@@ -17,6 +17,7 @@ const cors = require('cors');
 const socketIo = require('socket.io');
 const mediasoup = require('mediasoup');
 const { v4: uuidv4 } = require('uuid');
+const { loadEnvFile } = require('process');
 
 const PORT = process.env.PORT || 3000;
 
@@ -100,7 +101,7 @@ async function startServer() {
   // the browser will refuse cross‑origin requests from your Expo
   // development server.
   const corsOptions = {
-    origin: 'http://localhost:8081',
+    origin: loadEnvFile().CLIENT_ORIGIN,
     methods: 'GET,POST',
     allowedHeaders: ['Content-Type', 'Authorization'],
   };
